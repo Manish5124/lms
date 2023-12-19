@@ -99,32 +99,27 @@ function Home() {
           Learning to Fly
         </Typography>
         <Typography variant="subtitle1" color="text.secondary" style={styles.lineSpacing}>
-          Series: Wildwood Stables
+          <b>Series: </b>Wildwood Stables
         </Typography>
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          Authors: Suzanne Weyn
+          <b>Authors:</b> Suzanne Weyn
         </Typography>
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          Suggested age: 8 - 11
+          <b>Suggested age:</b> 8 - 11
         </Typography>
+      
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          Lexile: 800
+          <b>Page Count:</b> 176
         </Typography>
-        <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          Page Count: 176
-        </Typography>
-        <Typography variant="body1" paragraph>
-          Summary:
-        </Typography>
-        <Typography variant="body2" color="text.secondary" paragraph>
-          Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn!
+        <Typography variant="body1" color="text.secondary" paragraph>
+         <b> Summary: </b>Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn!
           So when Daphne offers to teach her English-style riding, Taylor can't wait to get started. But will her horse,
           Prince Albert, be as excited to try something new? Especially if it means competition--and jumping?
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites" style={styles.redIcon}>
-          <FavoriteIcon />
+        <IconButton aria-label="add to favorites" >
+          <FavoriteIcon style={styles.redIcon} />
         </IconButton>
       </CardActions>
     </Card>
