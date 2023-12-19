@@ -11,6 +11,25 @@ import Typography from '@mui/material/Typography';
 function Home() {
   const [data, setData] = useState(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:5050/books/all");
+        console.log("home up response =>", response);
+        const res = response.data.results;
+        console.log("res =>", res);
+      } catch (error) {
+        console.error("Axios error:", error);
+      }
+    };
+  
+    // Adding a setTimeout to simulate an asynchronous operation
+    setTimeout(() => {
+      fetchData();
+    }, 0);
+  }, []);
+  
+
   const styles = {
     card: {
       display: 'flex',
