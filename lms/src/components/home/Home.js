@@ -31,40 +31,27 @@ function Home() {
     },
     redIcon: {
       color: 'red',
+      fontSize: '5rem'
     },
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     const options = {
-  //       method: 'GET',
-  //       url: 'https://books39.p.rapidapi.com/CZFA4F/books',
-  //       params: {
-  //         series: 'Wings of fire',
-  //         book_type: 'Fiction',
-  //         lexile_min: '600',
-  //         lexile_max: '800',
-  //         results_per_page: '25',
-  //         page: '1'
-  //       },
-  //       headers: {
-  //         'X-RapidAPI-Key': '0453ebbe58msh9e1a33b721be434p1175c3jsn90031e9855fe',
-  //         'X-RapidAPI-Host': 'books39.p.rapidapi.com'
-  //       }
-  //     };
-
-  //     try {
-  //       const response = await axios.request(options);
-  //       console.log(response.data);
-  //       setData(response.data); // Set the data in the component state
-  //     } catch (error) {
-  //       console.error('Error fetching data:', error.message);
-  //       // Handle error if needed
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []); // Empty dependency array ensures useEffect runs only once when the component mounts
+ 
+  const book= {
+    "title": "At the Bake Shop",
+    "title_search": "At the Bake Shop",
+    "page_count": 4,
+    "series_name": "Collection 2",
+    "min_age": 4,
+    "max_age": 8,
+    "book_type": null,
+    "language": "english",
+    "authors": [
+        "Daffodil Hill Press"
+    ],
+    "subcategories": null,
+    "categories": "Hobbies, Sports & Outdoors; Fiction, Non-fiction & Poetry; Animals, Bugs & Pets",
+    "summary": "Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn"
+}
 
   return (
     <div>
@@ -96,25 +83,25 @@ function Home() {
       />
       <CardContent style={styles.content}>
         <Typography variant="h5" component="div" style={styles.lineSpacing}>
-          Learning to Fly
+          {book.title}
         </Typography>
         <Typography variant="subtitle1" color="text.secondary" style={styles.lineSpacing}>
-          <b>Series: </b>Wildwood Stables
+          <b>Series: </b>{book.series_name}
         </Typography>
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          <b>Authors:</b> Suzanne Weyn
+          <b>Authors:</b> {book.authors}
         </Typography>
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          <b>Suggested age:</b> 8 - 11
+          <b>Suggested age:</b> {book.min_age} - {book.max_age}
         </Typography>
-      
         <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
-          <b>Page Count:</b> 176
+          <b>Page Count:</b> {book.page_count}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" style={styles.lineSpacing}>
+          <b>Categories:</b> {book.categories}
         </Typography>
         <Typography variant="body1" color="text.secondary" paragraph>
-         <b> Summary: </b>Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn!
-          So when Daphne offers to teach her English-style riding, Taylor can't wait to get started. But will her horse,
-          Prince Albert, be as excited to try something new? Especially if it means competition--and jumping?
+         <b> Summary: </b>{book.summary}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
