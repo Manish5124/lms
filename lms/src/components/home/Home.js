@@ -34,7 +34,7 @@ function Home() {
     card: {
       display: 'flex',
       margin: '20px',
-      maxWidth: '1250px', // Adjust the maximum width as needed
+      maxWidth: '1350px', // Adjust the maximum width as needed
     },
     media: {
       width: '20%', // Adjust the image width as needed
