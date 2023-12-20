@@ -49,8 +49,8 @@ function LoginSignup() {
                 <div className="input form-control">
                     <img src={user_icon} alt="" srcset="" />
                     <input type="text" placeholder="Name" name="userName"  {...register("userName", {
-    required: true
-  })} />
+        required: true
+      })} />
                 </div>
                 <div className="input form-control">
                     <img src={password_icon} alt="" srcset="" />

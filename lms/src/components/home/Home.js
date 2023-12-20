@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
+
 function Home() {
   const [data, setData] = useState(null);
 
@@ -74,6 +75,7 @@ function Home() {
 
   return (
     <div>
+     
       {/* <h1>Home</h1> */}
       {/* {data !== null ? (
         <div> */}
