@@ -1,7 +1,8 @@
  body{
     height: 100vh;
     background: linear-gradient(#2A00B7, #42006C);
-    overflow: hidden;
+    /* overflow: hidden; */
+    /* min-height: calc(100vh-500px); */
  }
  .container{
     display: flex;
@@ -11,6 +12,7 @@
     background: #fff;
     padding-bottom: 30px;
     width: 600px;
+    min-height: calc(100vh-128px);
  }
 
  .header{
@@ -19,7 +21,7 @@
     align-items: center;
     gap: 9px;
     width: 100%;
-    margin-top: 30px;
+    margin-top: 5px;
  }
 
  .text{
@@ -36,11 +38,11 @@
  }
 
  .inputs{
-    margin-top: 55px;
+    margin-top: 13px;
     display: flex;
     flex-direction: column;
     gap:25px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
  }
 
  .input{
@@ -84,7 +86,7 @@
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin: 60px auto;
+    margin-top: 30px;
 }
 
 .submit{

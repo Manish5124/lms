@@ -5,6 +5,7 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
+  height: 50px;
 }
 .footer_container {
   max-width: 1300px;
@@ -15,6 +16,7 @@ footer {
   align-items: center;
   flex-wrap: wrap-reverse;
 }
+
 
 .social_media {
   margin: 20px 150px;

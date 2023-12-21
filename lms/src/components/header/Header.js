@@ -15,15 +15,15 @@ class Header extends React.Component {
             {/* Navbar Logo */}
             <div className="logo">
               {/* Logo Placeholder for Illustration */}
-              <a href="#home">Library Management System</a>
+              <a href="/">Library Management System</a>
             </div>
 
             {/* Navbar Links */}
             <ul id="menu">
-              <li><a href="#home">Home</a></li>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="/book">Services</a></li>
+              <li><a href="/book">Favorite</a></li>
+              <li><a href="/login">Login</a></li>
             </ul>
           </div>
         </nav>
