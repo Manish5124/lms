@@ -38,22 +38,22 @@ function Books() {
       card: {
         display: 'flex',
         marginLeft: '20px',
-        maxWidth: '1350px', // Adjust the maximum width as needed
+        maxWidth: '1350px', 
       },
       media: {
-        width: '20%', // Adjust the image width as needed
+        width: '20%', 
         // objectFit: 'cover',
       },
       content: {
         width: '80%',
         textAlign: 'left',
-        padding: '16px', // Adjust the padding as needed
+        padding: '16px', 
       },
       lineSpacing: {
-        marginBottom: '10px', // Adjust the spacing between lines as needed
+        marginBottom: '10px', 
       },
       redIcon: {
-        color: 'gray',
+        color: 'red',
         fontSize: '2rem'
       },
     };
@@ -102,7 +102,7 @@ function Books() {
           component="img"
           alt="Book Cover"
           height="auto"
-          image="https://cdn.pixabay.com/photo/2018/01/17/18/43/book-3088775_1280.jpg" // Replace with the actual path to your image
+          image="https://cdn.pixabay.com/photo/2018/01/17/18/43/book-3088775_1280.jpg" 
           style={styles.media}
         />
         <CardContent style={styles.content}>

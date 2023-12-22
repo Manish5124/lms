@@ -35,7 +35,7 @@
   .nav-wrapper {
     margin: auto;
     text-align: center;
-    width: 70%;
+    width: 95%;
   } @media(max-width: 768px) {
       .nav-wrapper {
         width: 90%;

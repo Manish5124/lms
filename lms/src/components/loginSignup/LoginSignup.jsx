@@ -33,7 +33,7 @@ function LoginSignup() {
             axios.post("http://localhost:8000/auth/login", data).then((response) => {
                 console.log("login response=>",response);
                 });
-                navigate('/home');
+                navigate('/book');
         }
     }
   };
@@ -63,7 +63,7 @@ function LoginSignup() {
             })}/>
                 </div>
             </div>
-            {action==="Sign Up"?<div></div>: <div className="forget-password">Lost Password? <span>Click here</span> </div>}
+            {/* {action==="Sign Up"?<div></div>: <div className="forget-password">Lost Password? <span>Click here</span> </div>} */}
         
             <div className="submit-container form-control">
         <button type="submit" className={action === "Login" ? "submit gray" : "submit"} onClick={() => setAction("Sign Up")}>Sign up</button>
