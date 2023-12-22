@@ -53,7 +53,7 @@ function Books() {
         marginBottom: '10px', 
       },
       redIcon: {
-        color: 'gray',
+        color: 'red',
         fontSize: '2rem'
       },
     };
