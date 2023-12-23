@@ -13,8 +13,10 @@ import { AppContext } from '../../context/AppContext';
 
 function Books() {
     // const [data, setData] = useState(null);
-      const {books,setFavBooks} = useContext(AppContext);
+      const {books,favBooks,setFavBooks,setDeleteFavBook} = useContext(AppContext);
+      const [favorites, setFavorites] = useState([]);
 
+      // const isFavorite = (book) => favBooks.includes(book.title);
     // useEffect(() => {
     //   const fetchData = async () => {
     //     try {
@@ -80,11 +82,26 @@ function Books() {
   //     "categories": "Hobbies, Sports & Outdoors; Fiction, Non-fiction & Poetry; Animals, Bugs & Pets",
   //     "summary": "Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn"
   // }
-  const handleFavorite = (value)=>{
-    const name = "manish";
-    // console.log("fav=>",value);
-    setFavBooks(value);
-  }
+  // const handleFavorite = (value)=>{
+  //   const name = "manish";
+  //   // console.log("fav=>",value);
+  //   setFavBooks(value);
+  // }
+
+  const isFavorite = (book) => favorites.includes(book.title);
+
+  const handleFavoriteClick = (book) => {
+    // Toggle the favorite status
+    if (isFavorite(book)) {
+      setFavorites(favorites.filter((title) => title !== book.title));
+      setDeleteFavBook(book.title);
+    } else {
+      setFavorites([...favorites, book.title]);
+    }
+
+    // Your existing handleFavorite logic
+    setFavBooks(book);
+  };
     return (
       <div style={styles.mainContainer}>
      
@@ -140,9 +157,9 @@ function Books() {
            <b> Summary: </b>{book.summary}
           </Typography>
         </CardContent>
-        <CardActions onClick={()=>handleFavorite(book)} >
-          <IconButton  aria-label="add to favorites" >
-            <FavoriteIcon  style={styles.redIcon} />
+        <CardActions onClick={() => handleFavoriteClick(book)} >
+          <IconButton  aria-label="add to favorites" disabled={isFavorite(book)} style={isFavorite(book) ? { color: 'grey' } : styles.redIcon} >
+            <FavoriteIcon   />
           </IconButton>
         </CardActions>
       </Card>

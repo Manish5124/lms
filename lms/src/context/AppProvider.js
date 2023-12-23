@@ -4,15 +4,11 @@ import axios from "axios";
 
 const AppProvider = ({children})=>{
 
-
     const Initialbooks=[];
-
-
     const [books,setBooks] = useState(Initialbooks);
     const [favbooks,setFavBooks] = useState(Initialbooks);
     const [getAllFavBooks,setgetAllFavBooks] = useState(Initialbooks); 
     const [deleteFavBook,setDeleteFavBook] = useState(Initialbooks);
-
 
     useEffect(() => {
       const fetchData = async () => {
