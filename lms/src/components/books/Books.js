@@ -50,7 +50,7 @@ function Books() {
         padding: '16px', 
       },
       lineSpacing: {
-        marginBottom: '10px', 
+        marginBottom: '5px', 
       },
       redIcon: {
         color: 'red',
