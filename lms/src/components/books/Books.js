@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,10 +7,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import { AppContext } from '../../context/AppContext';
+// import CommonCard from '../card/CommonCard';
 
 
 function Books() {
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
+      const {books,setFavBooks} = useContext(AppContext);
 
     // useEffect(() => {
     //   const fetchData = async () => {
@@ -33,12 +36,14 @@ function Books() {
   
     const styles = {
       mainContainer:{
-        marginTop: '87px'
+        marginTop: '12px'
       },
       card: {
         display: 'flex',
-        marginLeft: '20px',
-        maxWidth: '1350px', 
+        marginLeft: '12px',
+        marginRight: '12px',
+        maxWidth: '80%', 
+        marginBottom:'9px'
       },
       media: {
         width: '20%', 
@@ -59,23 +64,27 @@ function Books() {
     };
   
    
-    const book= {
-      "title": "At the Bake Shop",
-      "title_search": "At the Bake Shop",
-      "page_count": 4,
-      "series_name": "Collection 2",
-      "min_age": 4,
-      "max_age": 8,
-      "book_type": null,
-      "language": "english",
-      "authors": [
-          "Daffodil Hill Press"
-      ],
-      "subcategories": null,
-      "categories": "Hobbies, Sports & Outdoors; Fiction, Non-fiction & Poetry; Animals, Bugs & Pets",
-      "summary": "Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn"
+  //   const book= {
+  //     "title": "At the Bake Shop",
+  //     "title_search": "At the Bake Shop",
+  //     "page_count": 4,
+  //     "series_name": "Collection 2",
+  //     "min_age": 4,
+  //     "max_age": 8,
+  //     "book_type": null,
+  //     "language": "english",
+  //     "authors": [
+  //         "Daffodil Hill Press"
+  //     ],
+  //     "subcategories": null,
+  //     "categories": "Hobbies, Sports & Outdoors; Fiction, Non-fiction & Poetry; Animals, Bugs & Pets",
+  //     "summary": "Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn"
+  // }
+  const handleFavorite = (value)=>{
+    const name = "manish";
+    // console.log("fav=>",value);
+    setFavBooks(value);
   }
-  
     return (
       <div style={styles.mainContainer}>
      
@@ -96,7 +105,10 @@ function Books() {
         ) : (
           <p>Loading...</p>
         )} */}
-  
+    {/* <CommonCard book={book} /> */}
+
+    {books.map(book=>(
+      <div key={book.title}>
      <Card style={styles.card}>
         <CardMedia
           component="img"
@@ -128,12 +140,14 @@ function Books() {
            <b> Summary: </b>{book.summary}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites" >
-            <FavoriteIcon style={styles.redIcon} />
+        <CardActions onClick={()=>handleFavorite(book)} >
+          <IconButton  aria-label="add to favorites" >
+            <FavoriteIcon  style={styles.redIcon} />
           </IconButton>
         </CardActions>
       </Card>
+      </div>
+    ))}
   
   
   

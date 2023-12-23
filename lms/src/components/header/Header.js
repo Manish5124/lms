@@ -22,7 +22,7 @@ class Header extends React.Component {
             <ul id="menu">
               <li><a href="/">Home</a></li>
               <li><a href="/book">Services</a></li>
-              <li><a href="/book">Favorite</a></li>
+              <li><a href="/fav">Favorite</a></li>
               <li><a href="/login">Login</a></li>
             </ul>
           </div>

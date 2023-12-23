@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import './LoginSignup.css'
-
 import user_icon from '../Assets/person.png';
 import password_icon from '../Assets/password.png';
 import { useForm } from 'react-hook-form';
@@ -37,7 +36,6 @@ function LoginSignup() {
         }
     }
   };
-
   return (
     <div className='container'>
          <form onSubmit={handleSubmit(onSubmit)}>
