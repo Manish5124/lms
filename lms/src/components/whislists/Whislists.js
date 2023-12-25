@@ -39,18 +39,35 @@ function Whislists() {
           color: 'red',
           fontSize: '2rem'
         },
+        centerContainer: {
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          height: '80vh', 
+        },
+        noDataImage: {
+          width: '50%', 
+        },
       };
 
     const handledeleteFavorite = (value)=>{
         console.log("deleted fav=>",value);
-        // const title =value.title;
         setDeleteFavBook(value);
     }
 
   return (
     <div style={styles.mainContainer}>
-
-   {getAllFavBooks.map(book=>(
+    {getAllFavBooks.length === 0 ? (
+      <div style={styles.centerContainer}>
+      <img
+        src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais" // Replace with your image URL
+        alt="No Data"
+        style={styles.noDataImage}
+      />
+      </div>
+        // <Typography variant="h1">No data available.</Typography>
+      ) : (
+   getAllFavBooks.map(book=>(
       <div key={book.title}>
      <Card style={styles.card}>
         <CardMedia
@@ -90,7 +107,8 @@ function Whislists() {
         </CardActions>
       </Card>
       </div>
-    ))}
+    ))
+    )}
     </div>
   )
 }

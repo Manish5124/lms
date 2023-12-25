@@ -1,41 +1,78 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import './LoginSignup.css'
 import user_icon from '../Assets/person.png';
 import password_icon from '../Assets/password.png';
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../../context/AppContext';
 
 function LoginSignup() {
+  const { loginUser, signupUser } = useContext(AppContext);
   const navigate = useNavigate();
   const [action,setAction] = useState("Sign Up"); 
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm();
   
-
   const onSubmit = (data) => {
-    console.log(data);
-    if(data!=null)
-    {
-        if(action==="Sign Up")
-        {
-            axios.post("http://localhost:8082/users/RegisterUser", data).then((response) => {
-            console.log("sign up response=>",response);
-            });
-        }
-        else
-        {
-            axios.post("http://localhost:8000/auth/login", data).then((response) => {
-                console.log("login response=>",response);
-                });
-                navigate('/book');
-        }
+    console.log("login data=> ", data);
+    if (data != null) {
+      if (action === "Sign Up") {
+        signupUser(data);
+        reset();
+      } else {
+        loginUser(data);
+        navigate('/book');
+      }
     }
   };
+  // const onSubmit = (data) => {
+  //   console.log("login data=> ",data);
+  //   if(data!=null)
+  //   {
+  //       if(action==="Sign Up")
+  //       {
+  //         try {   
+  //           axios.post("http://localhost:8082/users/RegisterUser", data).then((response) => {
+  //           console.log("sign up response=>",response);
+  //            alert(response.data);
+  //            reset();
+  //           });
+            
+  //         } catch (error) {
+  //           console.log("error=>",error)
+  //         }
+         
+  //       }
+  //       else
+  //       {
+  //         try {
+  //           axios.post("http://localhost:8000/auth/login", data).then((response) => {
+  //             console.log("login response=>", response);
+  //             // alert("login successful!",response);
+  //             localStorage.setItem('userName', data.userName);
+  //             localStorage.setItem('token', response.data);
+  //             reset();
+  //             navigate('/book');
+  //           }).catch((error) => {
+  //             if (error.response && error.response.status === 401) {
+  //               console.log("Wrong credentials!!");
+  //             } else {
+  //               alert("An error occurred during login.");
+  //             }
+  //           });
+  //         } catch (error) {
+  //           alert("An unexpected error occurred.");
+  //         }
+  //         navigate('/login');
+  //       }
+  //   }
+  // };
   return (
     <div className='container'>
          <form onSubmit={handleSubmit(onSubmit)}>

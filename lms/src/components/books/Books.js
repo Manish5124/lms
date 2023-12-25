@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -8,12 +8,16 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { AppContext } from '../../context/AppContext';
+import IsFavoriteBookCom from './IsFavoriteBookCom';
 // import CommonCard from '../card/CommonCard';
 
 
 function Books() {
-    // const [data, setData] = useState(null);
-      const {books,favBooks,setFavBooks,setDeleteFavBook} = useContext(AppContext);
+      const {books,
+        setFavBooks,
+        setDeleteFavBook,
+        isFavoriteBook,
+        } = useContext(AppContext);
       const [favorites, setFavorites] = useState([]);
 
       // const isFavorite = (book) => favBooks.includes(book.title);
@@ -63,6 +67,15 @@ function Books() {
         color: 'red',
         fontSize: '2rem'
       },
+      centerContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '80vh', 
+      },
+      noDataImage: {
+        width: '50%', 
+      },
     };
   
    
@@ -88,43 +101,37 @@ function Books() {
   //   setFavBooks(value);
   // }
 
-  const isFavorite = (book) => favorites.includes(book.title);
+  // const isFavorite = (book) => favorites.includes(book.title);
 
-  const handleFavoriteClick = (book) => {
-    // Toggle the favorite status
-    if (isFavorite(book)) {
-      setFavorites(favorites.filter((title) => title !== book.title));
-      setDeleteFavBook(book.title);
-    } else {
-      setFavorites([...favorites, book.title]);
+  const handleFavoriteClick = async (book) => {
+    try {
+      setFavBooks(book);
+      // Check favorite status after state update
+      const isFavorite = await isFavoriteBook(book.title);
+      if (isFavorite) {
+        setDeleteFavBook(book.title);
+      }
+    } catch (error) {
+      console.error("Error handling favorite click:", error);
     }
-
-    // Your existing handleFavorite logic
-    setFavBooks(book);
   };
+  
+  
     return (
       <div style={styles.mainContainer}>
-     
-        {/* <h1>Home</h1> */}
-        {/* {data !== null ? (
-          <div> */}
-            {/* Render your data here */}
-            {/* {data.map(book => (
-              <div key={book.id}>
-                <h3>{book.TITLE}</h3>
-                <p>ISBN: {book.ISBN}</p>
-                <p>Language: {book.LANG}</p>
-                <p>Year: {book.YEAR}</p> */}
-                {/* Add more details as needed */}
-              {/* </div>
-            ))}
-          </div>
-        ) : (
-          <p>Loading...</p>
-        )} */}
+    
     {/* <CommonCard book={book} /> */}
-
-    {books.map(book=>(
+    {books.length === 0 ? (
+      <div style={styles.centerContainer}>
+      <img
+        src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais" // Replace with your image URL
+        alt="No Data"
+        style={styles.noDataImage}
+      />
+      </div>
+        // <Typography variant="h1">No data available.</Typography>
+      ) : (
+    books.map(book=>(
       <div key={book.title}>
      <Card style={styles.card}>
         <CardMedia
@@ -157,17 +164,17 @@ function Books() {
            <b> Summary: </b>{book.summary}
           </Typography>
         </CardContent>
-        <CardActions onClick={() => handleFavoriteClick(book)} >
-          <IconButton  aria-label="add to favorites" disabled={isFavorite(book)} style={isFavorite(book) ? { color: 'grey' } : styles.redIcon} >
-            <FavoriteIcon   />
+        <CardActions >
+          <IconButton  aria-label="add to favorites" onClick={() => handleFavoriteClick(book)}
+             style={{ color: isFavoriteBook(book.title) ? 'grey' : 'red' }}
+            >
+                {<IsFavoriteBookCom book={book}/>}
           </IconButton>
         </CardActions>
       </Card>
       </div>
-    ))}
-  
-  
-  
+    ))
+    )}
       </div>
     );
   }
