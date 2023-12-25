@@ -6,6 +6,8 @@ footer {
   width: 100%;
   text-align: center;
   height: 50px;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 .footer_container {
   max-width: 1300px;
@@ -17,7 +19,9 @@ footer {
   flex-wrap: wrap-reverse;
 }
 
-
+.footer_container p{
+  color:#574c4c;
+}
 .social_media {
   margin: 20px 150px;
 }

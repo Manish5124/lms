@@ -1,50 +1,44 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './Header.css'; 
+import { AppContext } from '../../context/AppContext';
 
-class Header extends React.Component {
-  state = {
-    menuToggle: false,
+const Header = () => {
+  const {isLoggedIn,setIsLoggedIn} = useContext(AppContext);
+  const navigate = useNavigate();
+ 
+  const logout = () => {
+    localStorage.removeItem('userName');
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    navigate('/login');
   };
-
-  render() {
-    return (
-      <div>
-        {/* Your HTML code goes here */}
-        <nav id="navbar" className="">
-          <div className="nav-wrapper">
-            {/* Navbar Logo */}
+  
+ 
+  return (
+    <div>
+      <nav id="navbar" >
+        <div className="nav-wrapper">
             <div className="logo">
-              {/* Logo Placeholder for Illustration */}
-              <a href="/">Library Management System</a>
+              <Link to="/">Library Management System</Link>
             </div>
-
-            {/* Navbar Links */}
-            <ul id="menu">
-              <li><a href="/">Home</a></li>
-              <li><a href="/book">Services</a></li>
-              <li><a href="/book">Favorite</a></li>
-              <li><a href="/login">Login</a></li>
-            </ul>
+            <div>
+              <ul id="menu">
+              <li><Link to="/">Home</Link></li>
+               {isLoggedIn ? (
+             <div className='loggedIn'>
+            <li><Link to="/book">Services</Link></li>
+            <li><Link to="/fav">Favorite</Link></li>
+            <li><Link to="/" onClick={()=>logout()}>Logout</Link></li>
           </div>
-        </nav>
-
-        {/* Menu Icon */}
-        <div className="menuIcon">
-          <span className="icon icon-bars"></span>
-          <span className="icon icon-bars overlay"></span>
+            ):
+            <li><Link to="/login">Login</Link></li>}
+              </ul>
+            </div>
         </div>
-
-        <div className="overlay-menu">
-          <ul id="menu">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-      </div>
-    );
-  }
-}
+      </nav>
+    </div>
+  );
+};
 
 export default Header;
