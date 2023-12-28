@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -43,10 +43,10 @@ function Whislists() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '80vh', 
+          textAlign:'center'
         },
         noDataImage: {
-          width: '50%', 
+          width: '35%', 
         },
       };
 
@@ -54,7 +54,9 @@ function Whislists() {
         console.log("deleted fav=>",value);
         setDeleteFavBook(value);
     }
-
+useEffect(()=>{
+  console.log("getALl Books=>",getAllFavBooks);
+},[getAllFavBooks])
   return (
     <div style={styles.mainContainer}>
     {getAllFavBooks.length === 0 ? (

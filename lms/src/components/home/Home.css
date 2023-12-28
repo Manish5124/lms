@@ -32,3 +32,164 @@
     height: auto;
   }
   
+.main {
+  background-color: white;
+  margin-bottom: 90px!important;
+  
+}
+
+.carousel-wrapper {
+  width: 100%;
+  max-width: 100%;
+}
+
+.carousel {
+  width: 100%;
+  max-width: 100%;
+  height: 80vh;
+  margin-bottom: 40px; 
+}
+
+.carousel img{
+  height: 80vh;
+}
+
+.content{
+
+margin-top: 30px;
+
+}
+
+/* split 1 */
+
+.split-container1 {
+  display: flex;
+ 
+
+  width: 80%;
+  padding-top: 40px;
+  margin-left: 1%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  
+  
+ 
+
+}
+
+.image-container1 {
+  flex: 1;
+  padding-bottom: 40px;
+}
+
+.content-container1 {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.image-container1 img {
+  width: 50%;
+  height: auto;
+}
+
+/* split 2 */
+
+
+.split-container2 {
+  display: flex;
+  width: 80%;
+  margin-top: 30px;
+  padding-top: 40px;
+  
+  margin-left: 19%;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  
+
+}
+
+
+.image-container2 {
+  flex: 1;
+  padding-bottom: 40px;
+ 
+}
+
+.content-container2 {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.image-container2 img {
+  width: 50%;
+  height: auto;
+  margin-left: 45%;
+}
+
+
+
+/* split 3 */
+
+.split-container3 {
+  display: flex;
+  width: 80%;
+  margin-top: 30px;
+  padding-top: 40px;
+  
+  
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3);
+  margin-left: 1%;
+  
+
+}
+
+
+
+.image-container3 {
+  flex: 1;
+  padding-bottom: 40px;
+ 
+}
+
+.content-container3 {
+  flex: 1;
+  padding-left: 20px;
+  padding-right: 30px;
+  padding-bottom: 30px;
+}
+
+.image-container3 img {
+  width: 50%;
+  height: auto;
+}
+
+
+.aboutWebsite{
+ 
+  margin-top: 40px;
+  text-align: center;
+}
+.aboutWebsite img{
+  width: 80%;
+  height: 20vh;
+  border-radius: 50px;
+}
+
+.cardContent{
+  text-align: center;
+  margin-top: 3%;
+  display: flex;
+  margin-left: 9%;
+  padding-bottom: 115px;
+}
+
+.card1, .card2, .card3{
+  margin-left: 50px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+
+
+
