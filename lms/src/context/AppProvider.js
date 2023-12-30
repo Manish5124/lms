@@ -29,15 +29,20 @@ const AppProvider = ({children})=>{
     }
   };
 
+ 
   const signupUser = async (data) => {
     try {
       const response = await axios.post("http://localhost:8082/users/RegisterUser", data);
       alert(response.data);
     } catch (error) {
-      console.error("Error during signup:", error);
+      if (error.response && error.response.status === 409) {
+        alert("Username already exists. Please choose a different username.");
+      } else {
+        console.error("Error during signup:", error);
+      }
     }
   };
-
+  
 
   const isFavoriteBook = async (title) => {
     try {
@@ -92,43 +97,102 @@ const AppProvider = ({children})=>{
       addFavData();
   }, [favbooks]);
   
-
-      const fetchFavBookData = async () => {
-        try {
-          const response = await axios.get(`http://localhost:8083/fav/getallbooks/${userName}`);
-          console.log("get all fav books =>", response);
-          const res = response.data;
-          console.log("res =>", res);
+  const fetchFavBookData = async () => {
+    try {
+      if (userName) {
+        const response = await axios.get(`http://localhost:8083/fav/getallbooks/${userName}`);
+        console.log("get all fav books =>", response);
+        const res = response.data;
+  
+        if (res.length === 0) {
+          console.warn("No books found for the user.");
+          setgetAllFavBooks([]);
+        } else {
           setgetAllFavBooks(res);
-        } catch (error) {
-          console.error("Axios error:", error);
         }
-      };
-      useEffect(() => {     
-        fetchFavBookData();
-      }, []);
+      } 
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        console.warn("No books found for the user.");
+        setgetAllFavBooks([]);
+      } else {
+        console.error("Axios error:", error);
+      }
+    }
+  };
+  
+  useEffect(() => {     
+    fetchFavBookData();
+  }, [userName]);
+  
+      // const fetchFavBookData = async () => {
+      //   try {
+      //     const response = await axios.get(`http://localhost:8083/fav/getallbooks/${userName}`);
+      //     console.log("get all fav books =>", response);
+      //     const res = response.data;
+      //     console.log("res =>", res);
+      //     setgetAllFavBooks(res);
+      //   } catch (error) {
+      //     console.error("Axios error:", error);
+      //   }
+      // };
+      // useEffect(() => {     
+      //   fetchFavBookData();
+      // }, []);
     
 
-    useEffect(() => {
-      const deleteFavBookData = async () => {
-        try {
-          if (favbooks.length === 0) {
-            console.error("Favorite books array is empty.");
-            return;
-          }
+      // useEffect(() => {
+      //   const deleteFavBookData = async () => {
+      //     try {
+      //       if (favbooks.length === 0 ) {
+      //         console.error("Favorite books array is empty or deleteFavBook is not set.");
+      //         return;
+      //       }
       
-          const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${deleteFavBook}`);
-          console.log("get delete response =>", response);
+      //       const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${deleteFavBook}`);
+      //       console.log("get delete response =>", response);
+      //       fetchFavBookData();
+      //     } catch (error) {
+      //       console.error("Axios error:", error);
+      //     }
+      //   };
+      
+      //   if (deleteFavBook) {
+      //     deleteFavBookData();
+      //   }
+      // }, [deleteFavBook]);
+      
+      // useEffect(() => {
+      //   const deleteFavBookData = async () => {
+      //     try {
+      //       if (!deleteFavBook || favbooks.length === 0) {
+      //         console.error("Delete book not specified or favorite books array is empty.");
+      //         return;
+      //       }
+      //       const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${deleteFavBook}`);
+      //       console.log("Delete response:", response);
+      //       fetchFavBookData();
+      //     } catch (error) {
+      //       console.error("Error deleting favorite book:", error.message);
+      //     }
+      //   };
+      
+      //   if (deleteFavBook) {
+      //     deleteFavBookData();
+      //   }
+      // }, [deleteFavBook, userName, favbooks, fetchFavBookData]);
+      
+
+        const deleteFavBookData = async (title) => {
+          try {
+            const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${title}`);
+            console.log("Delete response:", response);
             fetchFavBookData();
-        } catch (error) {
-          console.error("Axios error:", error);
-        }
-      };
-      deleteFavBookData();
-    }, [deleteFavBook]);
-    
-
-
+          } catch (error) {
+            console.error("Error deleting favorite book:", error.message);
+          }
+        };
+      
 
       
     
@@ -138,7 +202,9 @@ const AppProvider = ({children})=>{
         getAllFavBooks,
         deleteFavBook,
         isLoggedIn,
+        setIsLoggedIn,
         setDeleteFavBook,
+        deleteFavBookData,
         setgetAllFavBooks,
         setFavBooks,
         setBooks,

@@ -1,11 +1,10 @@
 footer {
   background: #faf5f5;
-   position: fixed;
+  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
   text-align: center;
-  height: 50px;
   font-size: 1.3rem;
   font-weight: 700;
 }
@@ -22,9 +21,9 @@ footer {
 .footer_container p{
   color:#574c4c;
 }
-.social_media {
+/* .social_media {
   margin: 20px 150px;
-}
+} */
 .social_media a {
   margin-right: 10px;
 }
