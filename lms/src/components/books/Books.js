@@ -16,10 +16,12 @@ function Books() {
       const {books,
         setFavBooks,
         setDeleteFavBook,
+        deleteFavBookData,
         isFavoriteBook,
         } = useContext(AppContext);
       const [favorites, setFavorites] = useState([]);
-
+      const [searchQuery, setSearchQuery] = useState('');
+      const [matchesFound, setMatchesFound] = useState(true);
       // const isFavorite = (book) => favBooks.includes(book.title);
     // useEffect(() => {
     //   const fetchData = async () => {
@@ -77,7 +79,17 @@ function Books() {
         width: '50%', 
       },
     };
-  
+    const handleSearchChange = (event) => {
+      setSearchQuery(event.target.value);
+    };
+
+    const filteredBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    setMatchesFound(filteredBooks.length > 0);
+  }, [filteredBooks]);
    
   //   const book= {
   //     "title": "At the Bake Shop",
@@ -110,6 +122,7 @@ function Books() {
       const isFavorite = await isFavoriteBook(book.title);
       if (isFavorite) {
         setDeleteFavBook(book.title);
+        deleteFavBookData(book.title);
       }
     } catch (error) {
       console.error("Error handling favorite click:", error);
@@ -119,21 +132,18 @@ function Books() {
   
     return (
       <div style={styles.mainContainer}>
-    
-    {/* <CommonCard book={book} /> */}
-    {books.length === 0 ? (
-      <div style={styles.centerContainer}>
-      <img
-        src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais" // Replace with your image URL
-        alt="No Data"
-        style={styles.noDataImage}
+      <input
+        type="text"
+        placeholder="Search books..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+        style={{ marginBottom: '12px',
+        marginLeft:'15px', padding: '8px' }}
       />
-      </div>
-        // <Typography variant="h1">No data available.</Typography>
-      ) : (
-    books.map(book=>(
+      {matchesFound ? (
+        filteredBooks.map((book) => (
       <div key={book.title}>
-     <Card style={styles.card}>
+      <Card style={styles.card}>
         <CardMedia
           component="img"
           alt="Book Cover"
@@ -174,6 +184,14 @@ function Books() {
       </Card>
       </div>
     ))
+    ) : (
+      <div style={styles.centerContainer}>
+        <img
+          src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais"
+          alt="No Data"
+          style={styles.noDataImage}
+        />
+      </div>
     )}
       </div>
     );

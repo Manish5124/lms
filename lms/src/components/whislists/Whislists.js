@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import IconButton from '@mui/material/IconButton';
@@ -7,11 +7,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { AppContext } from '../../context/AppContext';
-
 function Whislists() {
 
-    const { getAllFavBooks,setDeleteFavBook} = useContext(AppContext);
-
+    const { getAllFavBooks,setDeleteFavBook,deleteFavBookData} = useContext(AppContext);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [matchesFound, setMatchesFound] = useState(true);
     const styles = {
         mainContainer:{
           marginTop: '12px'
@@ -49,27 +49,37 @@ function Whislists() {
           width: '35%', 
         },
       };
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredBooks = getAllFavBooks.filter((book) =>
+  book.title.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+useEffect(() => {
+  setMatchesFound(filteredBooks.length > 0);
+}, [filteredBooks]);
 
     const handledeleteFavorite = (value)=>{
         console.log("deleted fav=>",value);
-        setDeleteFavBook(value);
+        deleteFavBookData(value);
     }
 useEffect(()=>{
   console.log("getALl Books=>",getAllFavBooks);
 },[getAllFavBooks])
   return (
     <div style={styles.mainContainer}>
-    {getAllFavBooks.length === 0 ? (
-      <div style={styles.centerContainer}>
-      <img
-        src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais" // Replace with your image URL
-        alt="No Data"
-        style={styles.noDataImage}
+    <input
+        type="text"
+        placeholder="Search books..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+        style={{ marginBottom: '12px',
+        marginLeft:'15px', padding: '8px' }}
       />
-      </div>
-        // <Typography variant="h1">No data available.</Typography>
-      ) : (
-   getAllFavBooks.map(book=>(
+      {matchesFound ? (
+        filteredBooks.map((book) => (
       <div key={book.title}>
      <Card style={styles.card}>
         <CardMedia
@@ -110,6 +120,14 @@ useEffect(()=>{
       </Card>
       </div>
     ))
+    ) : (
+      <div style={styles.centerContainer}>
+        <img
+          src="https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150544955.jpg?size=626&ext=jpg&ga=GA1.1.1294443822.1703438677&semt=ais"
+          alt="No Data"
+          style={styles.noDataImage}
+        />
+      </div>
     )}
     </div>
   )

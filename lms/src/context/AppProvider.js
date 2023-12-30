@@ -106,13 +106,11 @@ const AppProvider = ({children})=>{
   
         if (res.length === 0) {
           console.warn("No books found for the user.");
-          fetchFavBookData();
+          setgetAllFavBooks([]);
         } else {
           setgetAllFavBooks(res);
         }
-      } else {
-        console.error("userName is null. Unable to make the request.");
-      }
+      } 
     } catch (error) {
       if (error.response && error.response.status === 404) {
         console.warn("No books found for the user.");
@@ -164,14 +162,30 @@ const AppProvider = ({children})=>{
       //   }
       // }, [deleteFavBook]);
       
-      useEffect(() => {
-        const deleteFavBookData = async () => {
+      // useEffect(() => {
+      //   const deleteFavBookData = async () => {
+      //     try {
+      //       if (!deleteFavBook || favbooks.length === 0) {
+      //         console.error("Delete book not specified or favorite books array is empty.");
+      //         return;
+      //       }
+      //       const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${deleteFavBook}`);
+      //       console.log("Delete response:", response);
+      //       fetchFavBookData();
+      //     } catch (error) {
+      //       console.error("Error deleting favorite book:", error.message);
+      //     }
+      //   };
+      
+      //   if (deleteFavBook) {
+      //     deleteFavBookData();
+      //   }
+      // }, [deleteFavBook, userName, favbooks, fetchFavBookData]);
+      
+
+        const deleteFavBookData = async (title) => {
           try {
-            if (!deleteFavBook || favbooks.length === 0) {
-              console.error("Delete book not specified or favorite books array is empty.");
-              return;
-            }
-            const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${deleteFavBook}`);
+            const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${title}`);
             console.log("Delete response:", response);
             fetchFavBookData();
           } catch (error) {
@@ -179,13 +193,6 @@ const AppProvider = ({children})=>{
           }
         };
       
-        if (deleteFavBook) {
-          deleteFavBookData();
-        }
-      }, [deleteFavBook, userName, favbooks, fetchFavBookData]);
-      
-
-
 
       
     
@@ -195,7 +202,9 @@ const AppProvider = ({children})=>{
         getAllFavBooks,
         deleteFavBook,
         isLoggedIn,
+        setIsLoggedIn,
         setDeleteFavBook,
+        deleteFavBookData,
         setgetAllFavBooks,
         setFavBooks,
         setBooks,
