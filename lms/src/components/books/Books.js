@@ -21,25 +21,6 @@ function Books() {
       const [favorites, setFavorites] = useState([]);
       const [searchQuery, setSearchQuery] = useState('');
       const [matchesFound, setMatchesFound] = useState(true);
-      // const isFavorite = (book) => favBooks.includes(book.title);
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       const response = await axios.get("http://localhost:5050/books/all");
-    //       console.log("home up response =>", response);
-    //       const res = response.data.results;
-    //       console.log("res =>", res);
-    //     } catch (error) {
-    //       console.error("Axios error:", error);
-    //     }
-    //   };
-    
-    //   // Adding a setTimeout to simulate an asynchronous operation
-    //   setTimeout(() => {
-    //     fetchData();
-    //   }, 0);
-    // }, []);
-    
   
     const styles = {
       mainContainer:{
@@ -54,8 +35,7 @@ function Books() {
       },
       media: {
         width: '20%', 
-        // objectFit: 'cover',
-      },
+       },
       content: {
         width: '80%',
         textAlign: 'left',
@@ -64,8 +44,8 @@ function Books() {
       lineSpacing: {
         marginBottom: '5px', 
       },
-      redIcon: {
-        color: 'red',
+      greyIcon: {
+        color: 'grey',
         fontSize: '2rem'
       },
       centerContainer: {
@@ -90,37 +70,13 @@ function Books() {
     setMatchesFound(filteredBooks.length > 0);
   }, [filteredBooks]);
    
-  //   const book= {
-  //     "title": "At the Bake Shop",
-  //     "title_search": "At the Bake Shop",
-  //     "page_count": 4,
-  //     "series_name": "Collection 2",
-  //     "min_age": 4,
-  //     "max_age": 8,
-  //     "book_type": null,
-  //     "language": "english",
-  //     "authors": [
-  //         "Daffodil Hill Press"
-  //     ],
-  //     "subcategories": null,
-  //     "categories": "Hobbies, Sports & Outdoors; Fiction, Non-fiction & Poetry; Animals, Bugs & Pets",
-  //     "summary": "Taylor feels more at home at Wildwood Stables than she does anywhere else. But she still has so much to learn"
-  // }
-  // const handleFavorite = (value)=>{
-  //   const name = "manish";
-  //   // console.log("fav=>",value);
-  //   setFavBooks(value);
-  // }
-
-  // const isFavorite = (book) => favorites.includes(book.title);
+  
 
   const handleFavoriteClick = async (book) => {
     try {
       setFavBooks(book);
-      // Check favorite status after state update
       const isFavorite = await isFavoriteBook(book.title);
       if (isFavorite) {
-        // setDeleteFavBook(book.title);
         deleteFavBookData(book.title);
       }
     } catch (error) {
@@ -175,7 +131,7 @@ function Books() {
         </CardContent>
         <CardActions >
           <IconButton  aria-label="add to favorites" onClick={() => handleFavoriteClick(book)}
-             style={{ color: isFavoriteBook(book.title) ? 'grey' : 'red' }}
+             style={{ color: isFavoriteBook(book.title) ? 'red' : 'grey' }}
             >
                 {<IsFavoriteBookCom book={book}/>}
           </IconButton>

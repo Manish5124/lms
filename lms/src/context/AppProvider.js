@@ -9,10 +9,7 @@ const AppProvider = ({children})=>{
     const [getAllFavBooks,setgetAllFavBooks] = useState(Initialbooks); 
     const [deleteFavBook,setDeleteFavBook] = useState(Initialbooks);
     const [isLoggedIn,setIsLoggedIn] = useState(false);
-    const [val,setVal] = useState();
-   useEffect(()=>{
-    setVal("welcome")
-   },[])
+
     
     const userName=localStorage.getItem('userName');
 
@@ -25,15 +22,18 @@ const AppProvider = ({children})=>{
       localStorage.setItem('token', response.data);
       fetchData(); 
       setIsLoggedIn(true);
+      return false;
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.log("Wrong credentials!!");
-      } else {
-        alert("An error occurred during login.");
-      }
+        } else {
+        console.log("An error occurred during login.");
+        }
+        return true;
     }
   };
 
+    
  
   const signupUser = async (data) => {
     try {
@@ -153,7 +153,6 @@ const AppProvider = ({children})=>{
         getAllFavBooks,
         deleteFavBook,
         isLoggedIn,
-        val,
         setIsLoggedIn,
         setDeleteFavBook,
         deleteFavBookData,

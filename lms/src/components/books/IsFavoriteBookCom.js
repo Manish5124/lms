@@ -19,7 +19,7 @@ const IsFavoriteBookCom = ({ book }) => {
   }, [isFavoriteBook, book.title]);
 
   return (
-    <div style={{ color: status ? 'grey' : 'red' }}>
+    <div style={{ color: status ? 'red' : 'grey' }}>
       <FavoriteIcon />
     </div>
   );

@@ -1,5 +1,6 @@
 import react from 'react';
 import './App.css';
+import ErrorBoundary from "./ErrorBoundary";
 import Home from './components/home/Home';
 import LoginSignup from './components/loginSignup/LoginSignup';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <AppProvider>
       <Header/>
+      <ErrorBoundary>
        {/* <Router> */}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -24,6 +26,7 @@ function App() {
           <Route path="/fav" element={<Whislists />} />
         </Routes>
       {/* </Router> */}
+      </ErrorBoundary>
       <Footer/>
       </AppProvider>
     </div>
