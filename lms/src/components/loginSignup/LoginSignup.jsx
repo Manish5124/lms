@@ -4,7 +4,7 @@ import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
+import  AppContext from "../../context/AppContext";
 
 function LoginSignup() {
   const { loginUser, signupUser } = useContext(AppContext);

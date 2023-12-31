@@ -10,56 +10,55 @@ jest.mock('axios', () => ({
 }));
 
 const setIsLoggedInMock = jest.fn();
+const Wrapper = ({children})=>{
+  <AppProvider>
+         <Router>
+        {children}
+         </Router>
+  </AppProvider>
 
+}
 describe('Header component', () => {
-  test('renders Header component with title', () => {
-    render(
-      <AppProvider>
-        <Router>
-          <Header />
-        </Router>
-      </AppProvider>
-    );
-    expect(screen.getByText('Library Management System')).toBeInTheDocument();
-  });
-    
-  test('renders Header component with Home', () => {
-    render(
-      <AppProvider>
-        <Router>
-          <Header />
-        </Router>
-      </AppProvider>
-    );
-    expect(screen.getByText('Home')).toBeInTheDocument();
-  });
-
-  test('renders Header component with Login', () => {
-    render(
-      <AppProvider>
-        <Router>
-          <Header />
-        </Router>
-      </AppProvider>
-    );
-    expect(screen.getByText('Login')).toBeInTheDocument();
-  });
-  // test('renders navigation links correctly', () => {
-  //   const setIsLoggedInMock = jest.fn();
-  
+  // test('renders Header component with title', () => {
   //   render(
-  //        <AppProvider>
-  //          <Router>
-  //           <Header />
-  //         </Router>
-  //       </AppProvider>
+  //     <AppProvider>
+  //       <Router>
+  //         <Header />
+  //       </Router>
+  //     </AppProvider>
   //   );
-  
-  //   expect(screen.getByText('Home')).toBeInTheDocument();
-  //   expect(screen.getByText('Services')).toBeInTheDocument();
-  //   expect(screen.getByText('Favorite')).toBeInTheDocument();
-  //   expect(screen.getByText('Logout')).toBeInTheDocument();
+  //   expect(screen.getByText('Library Management System')).toBeInTheDocument();
   // });
+    
+  // test('renders Header component with Home', () => {
+  //   render(
+  //     <AppProvider>
+  //       <Router>
+  //         <Header />
+  //       </Router>
+  //     </AppProvider>
+  //   );
+  //   expect(screen.getByText('Home')).toBeInTheDocument();
+  // });
+
+  test('renders Header component with Login', async () => {
+    render((
+      <Header />
+       ),{wrapper: Wrapper});
+       const textEle = await screen.findByText('Login')
+    expect(textEle).toBeInTheDocument();
+  });
+  test('renders navigation links correctly', () => {
+    const setIsLoggedInMock = jest.fn();
+    render((
+         <Header />
+          ),{wrapper: Wrapper});
+  
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Services')).toBeInTheDocument();
+    expect(screen.getByText('Favorite')).toBeInTheDocument();
+    expect(screen.getByText('Logout')).toBeInTheDocument();
+  });
   
   // test('renders login link when not logged in', () => {
   //   render(

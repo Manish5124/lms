@@ -7,7 +7,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { AppContext } from '../../context/AppContext';
+import AppContext from '../../context/AppContext';
 import IsFavoriteBookCom from './IsFavoriteBookCom';
 // import CommonCard from '../card/CommonCard';
 
@@ -121,7 +121,7 @@ function Books() {
       // Check favorite status after state update
       const isFavorite = await isFavoriteBook(book.title);
       if (isFavorite) {
-        setDeleteFavBook(book.title);
+        // setDeleteFavBook(book.title);
         deleteFavBookData(book.title);
       }
     } catch (error) {
