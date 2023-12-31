@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import AppContext from '../../context/AppContext';
-import Whislists from './Whislists';
+import Books from './Books';
 
 const data =  [
   {
@@ -38,12 +38,18 @@ const data =  [
       "summary": null
   }]
 describe('Whislist component', () => {
-  test('renders whilslist component with title', () => {
-    const contextValue = { getAllFavBooks: data };
+    test('renders Books component with title', () => {
+      const contextValue = {
+        books: data,
+        setFavBooks: jest.fn(),
+        setDeleteFavBook: jest.fn(),
+        deleteFavBookData: jest.fn(),
+        isFavoriteBook: jest.fn(() => false), // Mock isFavoriteBook function
+      };
     render(
       <AppContext.Provider value={contextValue}>
           <Router>
-        <Whislists/>
+          <Books/>
         </Router>
       </AppContext.Provider>
     );
@@ -53,12 +59,18 @@ describe('Whislist component', () => {
     expect(title2).toBeInTheDocument();
   });
 
-  test('renders whilslist component with placeholder', () => {
-    const contextValue = { getAllFavBooks: data };
+  test('renders books component with placeholder', () => {
+    const contextValue = {
+        books: data,
+        setFavBooks: jest.fn(),
+        setDeleteFavBook: jest.fn(),
+        deleteFavBookData: jest.fn(),
+        isFavoriteBook: jest.fn(() => false),
+      };
     render(
       <AppContext.Provider value={contextValue}>
           <Router>
-        <Whislists/>
+       <Books/>
         </Router>
       </AppContext.Provider>
     );
@@ -66,18 +78,25 @@ describe('Whislist component', () => {
     expect(inputElement).toBeInTheDocument();
   });
 
-  test('filters books based on search input', () => {
-    const contextValue = { getAllFavBooks: data };
+test('filters books based on search input', () => {
+    const contextValue = {
+      books: data,
+      setFavBooks: jest.fn(),
+      setDeleteFavBook: jest.fn(),
+      deleteFavBookData: jest.fn(),
+      isFavoriteBook: jest.fn(() => false),
+    };
+
     render(
       <AppContext.Provider value={contextValue}>
         <Router>
-          <Whislists />
+          <Books />
         </Router>
       </AppContext.Provider>
     );
 
     fireEvent.change(screen.getByPlaceholderText('Search books...'), {
-      target: { value: 'Jon' }
+      target: { value: 'Jon' },
     });
 
     expect(screen.queryByText('At the Bake Shop')).not.toBeInTheDocument();

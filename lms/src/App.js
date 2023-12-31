@@ -9,10 +9,6 @@ import Header from './components/header/Header';
 import AppProvider from './context/AppProvider';
 import Whislists from './components/whislists/Whislists';
 
-
-
-
-
 function App() {
   return (
     <div className="App">

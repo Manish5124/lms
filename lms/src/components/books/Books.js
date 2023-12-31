@@ -9,7 +9,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import AppContext from '../../context/AppContext';
 import IsFavoriteBookCom from './IsFavoriteBookCom';
-// import CommonCard from '../card/CommonCard';
 
 
 function Books() {
