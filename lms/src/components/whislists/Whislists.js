@@ -6,7 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { AppContext } from '../../context/AppContext';
+import  AppContext  from '../../context/AppContext';
 function Whislists() {
 
     const { getAllFavBooks,setDeleteFavBook,deleteFavBookData} = useContext(AppContext);

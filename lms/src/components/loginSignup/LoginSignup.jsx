@@ -3,7 +3,6 @@ import "./LoginSignup.css";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../../context/AppContext";
 
