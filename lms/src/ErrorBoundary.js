@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -59,6 +59,7 @@ export default class ErrorBoundary extends React.Component {
           <p style={redirectMessageStyle}>
             Redirecting in {this.state.redirectTimer} seconds...
           </p>
+         
         </div>
       );
     }

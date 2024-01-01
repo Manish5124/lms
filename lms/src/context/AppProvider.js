@@ -11,17 +11,17 @@ const AppProvider = ({children})=>{
     const [isLoggedIn,setIsLoggedIn] = useState(false);
 
     
-    const userName=localStorage.getItem('userName');
-
-
+  const userName=localStorage.getItem('userName');
 
   const loginUser = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8000/auth/login", data);
+      const response = await axios.post("http://localhost:8881/auth/login", data);
+      
       localStorage.setItem('userName', data.userName);
       localStorage.setItem('token', response.data);
       fetchData(); 
       setIsLoggedIn(true);
+      console.log("===>")
       return false;
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -51,7 +51,9 @@ const AppProvider = ({children})=>{
 
   const isFavoriteBook = async (title) => {
     try {
-      const response = await axios.get(`http://localhost:8083/fav/isFavoriteBook/${userName}/${title}`);
+      const token=localStorage.getItem('token'); 
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.get(`http://localhost:8881/fav/isFavoriteBook/${userName}/${title}`,{headers: headers});
       return response.data;
     } catch (error) {
       console.log("Axios error:", error);
@@ -61,8 +63,9 @@ const AppProvider = ({children})=>{
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5050/books/all");
-      // const response = await axios.get("http://localhost:5050/books/search/Polar Bears")
+      const token=localStorage.getItem('token'); 
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.get(`http://localhost:8881/books/all`,{headers: headers});
       console.log("home up response =>", response);
       const res = response.data.results;
       console.log("res =>", res);
@@ -81,8 +84,10 @@ const AppProvider = ({children})=>{
   
   const fetchFavBookData = async () => {
     try {
+      const token=localStorage.getItem('token'); 
+      const headers = { Authorization: `Bearer ${token}` };
       if (userName) {
-        const response = await axios.get(`http://localhost:8083/fav/getallbooks/${userName}`);
+        const response = await axios.get(`http://localhost:8881/fav/getallbooks/${userName}`,{headers: headers});
         console.log("get all fav books =>", response);
         const res = response.data;
   
@@ -110,9 +115,9 @@ const AppProvider = ({children})=>{
         console.log("Favorite books array is empty.");
         return;
       }
-  
-      const response = await axios.post(`http://localhost:8083/fav/addBook/${userName}`, favbooks);
-      console.log("Manish =>", response);
+      const token=localStorage.getItem('token'); 
+      const headers = { Authorization: `Bearer ${token}` };
+      const response = await axios.post(`http://localhost:8881/fav/addBook/${userName}`, favbooks,{headers: headers});
       fetchData();
       fetchFavBookData();
     } catch (error) {
@@ -124,8 +129,10 @@ const AppProvider = ({children})=>{
   
 
         const deleteFavBookData = async (title) => {
+          const token=localStorage.getItem('token'); 
+          const headers = { Authorization: `Bearer ${token}` };
           try {
-            const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${title}`);
+            const response = await axios.delete(`http://localhost:8881/fav/deleteBooks/${userName}/${title}`,{headers: headers});
             console.log("Delete response:", response);
             fetchFavBookData();
           } catch (error) {

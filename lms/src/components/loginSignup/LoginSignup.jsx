@@ -48,8 +48,9 @@ if(error)
   throw new Error("server error!");
 }
   return (
-    <ErrorBoundary>
-     <div className="container">
+    <div id="loginBack">
+
+    <div className="container">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="header">
           <div className="text">{action}</div>
@@ -103,7 +104,7 @@ if(error)
         </div>
       </form>
     </div>
-    </ErrorBoundary>
+    </div>
   );
 }
 

@@ -23,7 +23,7 @@ function Books() {
   
     const styles = {
       mainContainer:{
-        marginTop: '12px'
+        background: 'linear-gradient(#2A00B7, #42006C)'
       },
       card: {
         display: 'flex',
@@ -54,7 +54,7 @@ function Books() {
         height: '80vh', 
       },
       noDataImage: {
-        width: '50%', 
+        width: '30%', 
       },
     };
     const handleSearchChange = (event) => {

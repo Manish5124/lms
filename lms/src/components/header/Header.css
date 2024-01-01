@@ -16,8 +16,8 @@
   
 }
 .logo{
- margin-left: 20px;
- margin-top: 23px;
+ margin-left: 2%;
+ margin-top: 1%;
  text-transform: uppercase; 
  height: 100%; 
 }
@@ -68,4 +68,210 @@ li a:hover{
   width: 100%;
   height: 2px;
   background-color: #574c4c;
+}
+
+@media (max-width: 600px) {
+  .logo{
+    margin-left: 2%;
+    margin-top: 4%;
+    text-transform: uppercase; 
+    height: 100%; 
+   }
+  .nav-wrapper li {
+     display: none;
+  }
+
+  .nav-wrapper button.toggle-btn {
+     display: block;
+  }
+
+  .nav-wrapper #menu {
+     display: none;
+     flex-direction: column;
+     align-items: center;
+     position: absolute;
+     top: 71px;
+     left: 0;
+     width: 100%;
+     background-color: #eee;
+  }
+
+  .nav-wrapper #menu li {
+     margin-right: 0;
+     margin-bottom:10px;
+  }
+}
+.overlay-menu{
+  display: none;
+}
+@media(max-width: 600px) {
+  .menuIcon {
+    cursor: pointer;
+    display: block;
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    height: 23px;
+    width: 27px;
+    z-index: 12;
+  }
+  
+  /* Icon Bars */
+  .icon-bars {
+    background: rgb(13, 26, 38);
+    position: absolute;
+    left: 1px;
+    top: 45%;
+    height: 2px;
+    width: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  } 
+
+  .icon-bars::before {
+    background: rgb(13, 26, 38);
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -8px;
+    height: 2px;
+    width: 20px;
+/*     -webkit-transition: top 0.2s ease 0.3s;
+    transition: top 0.2s ease 0.3s; */
+    -webkit-transition: 0.3s width 0.4s;
+    transition: 0.3s width 0.4s;
+  }
+
+  .icon-bars::after {
+    margin-top: 0px;
+    background: rgb(13, 26, 38);
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    height: 2px;
+    width: 20px;
+/*     -webkit-transition: top 0.2s ease 0.3s;
+    transition: top 0.2s ease 0.3s; */
+    -webkit-transition: 0.3s width 0.4s;
+    transition: 0.3s width 0.4s;
+  }
+
+  /* Bars Shadows */
+  .icon-bars.overlay {
+    background: rgb(97, 114, 129);
+    background: rgb(183, 199, 211);
+    width: 20px;
+    animation: middleBar 3s infinite 0.5s;
+    -webkit-animation: middleBar 3s infinite 0.5s;
+  } @keyframes middleBar {
+      0% {width: 0px}
+      50% {width: 20px}
+      100% {width: 0px}
+    } @-webkit-keyframes middleBar {
+        0% {width: 0px}
+        50% {width: 20px}
+        100% {width: 0px}
+      }
+
+  .icon-bars.overlay::before {
+    background: rgb(97, 114, 129);
+    background: rgb(183, 199, 211);
+    width: 10px;
+    animation: topBar 3s infinite 0.2s;
+    -webkit-animation: topBar 3s infinite 0s;
+  } @keyframes topBar {
+      0% {width: 0px}
+      50% {width: 10px}
+      100% {width: 0px}
+    } @-webkit-keyframes topBar {
+        0% {width: 0px}
+        50% {width: 10px}
+        100% {width: 0px}
+      }
+
+  .icon-bars.overlay::after {
+    background: rgb(97, 114, 129);
+    background: rgb(183, 199, 211);
+    width: 15px;
+    animation: bottomBar 3s infinite 1s;
+    -webkit-animation: bottomBar 3s infinite 1s;
+  } @keyframes bottomBar {
+      0% {width: 0px}
+      50% {width: 15px}
+      100% {width: 0px}
+    } @-webkit-keyframes bottomBar {
+        0% {width: 0px}
+        50% {width: 15px}
+        100% {width: 0px}
+      }
+
+      
+}
+
+@media (max-width: 600px) {
+  #menu{
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    align-items: flex-start; /* Align items at the start (top) */
+    list-style: none;
+    flex-direction: column;
+  }
+  .nav-wrapper #menu {
+    display: none;
+  }
+  .loggedIn{
+    display: flex;
+    justify-content: flex-end; /* Align to the right */
+    align-items: flex-start; /* Align items at the start (top) */
+    list-style: none;
+    flex-direction: column;
+  }
+  .overlay-menu {
+    display: none;
+    position: absolute;
+    top: 71px;
+    left: 0;
+    width: 100%;
+    background-color: #eee;
+    z-index: 1;
+    flex-direction: column; /* Set the default layout to column */
+  }
+
+  .overlay-menu.active {
+    display: flex; /* Show the menu when it has the active class */
+  }
+
+  .menuIcon {
+    cursor: pointer;
+    display: block;
+    position: fixed;
+    right: 15px;
+    top: 20px;
+    height: 23px;
+    width: 27px;
+    z-index: 12;
+  }
+
+  .menuIcon:hover + .overlay-menu,
+  .overlay-menu:hover {
+    display: flex; /* Show the menu when the menu icon is hovered */
+  }
+
+  .overlay-menu ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  .overlay-menu ul li {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+
+  .overlay-menu ul li a {
+    color: #574c4c;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.3rem;
+  }
 }

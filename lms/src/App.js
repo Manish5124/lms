@@ -12,10 +12,9 @@ import Whislists from './components/whislists/Whislists';
 function App() {
   return (
     <div className="App">
+        <ErrorBoundary>
       <AppProvider>
-      <Header/>
-      <ErrorBoundary>
-       {/* <Router> */}
+      <Header/>   
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginSignup />} />
@@ -24,10 +23,9 @@ function App() {
           <Route path="/footer" element={<Footer />} />  
           <Route path="/fav" element={<Whislists />} />
         </Routes>
-      {/* </Router> */}
-      </ErrorBoundary>
       <Footer/>
       </AppProvider>
+      </ErrorBoundary>
     </div>
   );
 }
