@@ -1,4 +1,3 @@
-import react from 'react';
 import './App.css';
 import ErrorBoundary from "./ErrorBoundary";
 import Home from './components/home/Home';
