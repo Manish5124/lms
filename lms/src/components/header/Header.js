@@ -42,23 +42,23 @@ const Header = () => {
           </div>
         </div>
       </nav>
-      <div className="menuIcon" onClick={toggleMenu}>
+      <div className="menuIcon" onClick={toggleMenu} data-testid="menu-icon" >
         <span className="icon icon-bars"></span>
         <span className="icon icon-bars overlay"></span>
       </div>
 
-      <div className={`overlay-menu ${menuVisible ? 'active' : ''}`}>
+      <div className={`overlay-menu ${menuVisible ? 'active' : ''}`} data-testid="overlay-menu" >
         <ul id="menu">
           <li onClick={()=> setMenuVisible(false)}><Link to="/">Home</Link></li>
-          {/* {isLoggedIn ? ( */}
+          {isLoggedIn ? (
             <div className='loggedIn'>
               <li onClick={()=> setMenuVisible(false)}><Link to="/book" >Services</Link></li>
               <li onClick={()=> setMenuVisible(false)}><Link to="/fav">Favorite</Link></li>
               <li onClick={()=> setMenuVisible(false)}><Link to="/" onClick={() => logout()}>Logout</Link></li>
             </div>
-          {/* // ) : ( */}
+          ) : (
             <li onClick={()=> setMenuVisible(false)}><Link to="/login">Login</Link></li>
-          {/* // )} */}
+           ) }
         </ul>
       </div>
     </div>

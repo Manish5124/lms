@@ -1,11 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 export default class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: null,
-      redirectTimer: 30, // 5 minutes (300 seconds)
+      redirectTimer: 15, // 5 minutes (300 seconds)
     };
   }
 

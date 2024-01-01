@@ -151,4 +151,4 @@ function Books() {
     );
   }
 
-export default Books
+export default Books;

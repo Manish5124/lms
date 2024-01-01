@@ -37,7 +37,7 @@ const AppProvider = ({children})=>{
  
   const signupUser = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8082/users/RegisterUser", data);
+      const response = await axios.post("http://localhost:8881/users/RegisterUser", data);
       alert(response.data);
     } catch (error) {
       if (error.response && error.response.status === 409) {

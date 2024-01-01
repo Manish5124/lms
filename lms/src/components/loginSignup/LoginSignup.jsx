@@ -5,7 +5,6 @@ import password_icon from "../Assets/password.png";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import  AppContext from "../../context/AppContext";
-import ErrorBoundary from "../../ErrorBoundary";
 
 function LoginSignup() {
   const { loginUser, signupUser } = useContext(AppContext);
@@ -84,7 +83,6 @@ if(error)
             />
           </div>
         </div>
-        {/* {action==="Sign Up"?<div></div>: <div className="forget-password">Lost Password? <span>Click here</span> </div>} */}
 
         <div className="submit-container form-control">
           <button
