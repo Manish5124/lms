@@ -6,15 +6,19 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { AppContext } from '../../context/AppContext';
+import  AppContext  from '../../context/AppContext';
 function Whislists() {
 
     const { getAllFavBooks,setDeleteFavBook,deleteFavBookData} = useContext(AppContext);
     const [searchQuery, setSearchQuery] = useState('');
     const [matchesFound, setMatchesFound] = useState(true);
     const styles = {
+        whislistBack:{
+          minHeight:'100vh',
+          background: 'linear-gradient(#2A00B7, #42006C)'
+        },
         mainContainer:{
-          marginTop: '12px'
+          // marginTop: '12px'
         },
         card: {
           display: 'flex',
@@ -46,7 +50,7 @@ function Whislists() {
           textAlign:'center'
         },
         noDataImage: {
-          width: '35%', 
+          width: '33%', 
         },
       };
   const handleSearchChange = (event) => {
@@ -69,6 +73,7 @@ useEffect(()=>{
   console.log("getALl Books=>",getAllFavBooks);
 },[getAllFavBooks])
   return (
+    <div style={styles.whislistBack}>
     <div style={styles.mainContainer}>
     <input
         type="text"
@@ -129,6 +134,7 @@ useEffect(()=>{
         />
       </div>
     )}
+    </div>
     </div>
   )
 }

@@ -3,15 +3,14 @@ import "./LoginSignup.css";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { useForm } from "react-hook-form";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { AppContext } from "../../context/AppContext";
+import  AppContext from "../../context/AppContext";
 
 function LoginSignup() {
   const { loginUser, signupUser } = useContext(AppContext);
   const navigate = useNavigate();
   const [action, setAction] = useState("Sign Up");
-
+  const [error,setError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -19,19 +18,37 @@ function LoginSignup() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("login data=> ", data);
     if (data != null) {
       if (action === "Sign Up") {
         signupUser(data);
         reset();
       } else {
-        loginUser(data);
-        navigate("/book");
+     try {
+            const res =  await loginUser(data);
+            console.log("res=>",res);
+             if (!res) {
+              navigate("/book");
+            }
+            else{
+              setError(res);
+            }
+            
+      } catch (error) {
+        console.error("Login error:", error);
+      }
       }
     }
   };
+
+if(error)
+{
+  throw new Error("server error!");
+}
   return (
+    <div id="loginBack">
+
     <div className="container">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="header">
@@ -66,7 +83,6 @@ function LoginSignup() {
             />
           </div>
         </div>
-        {/* {action==="Sign Up"?<div></div>: <div className="forget-password">Lost Password? <span>Click here</span> </div>} */}
 
         <div className="submit-container form-control">
           <button
@@ -85,6 +101,7 @@ function LoginSignup() {
           </button>
         </div>
       </form>
+    </div>
     </div>
   );
 }

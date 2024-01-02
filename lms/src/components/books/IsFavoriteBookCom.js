@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../../context/AppContext';
+import  AppContext from '../../context/AppContext';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 const IsFavoriteBookCom = ({ book }) => {
   const { isFavoriteBook } = useContext(AppContext);
@@ -19,7 +19,7 @@ const IsFavoriteBookCom = ({ book }) => {
   }, [isFavoriteBook, book.title]);
 
   return (
-    <div style={{ color: status ? 'grey' : 'red' }}>
+    <div style={{ color: status ? 'red' : 'grey' }}>
       <FavoriteIcon />
     </div>
   );
