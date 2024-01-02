@@ -63,9 +63,22 @@ if(error)
               placeholder="Name"
               name="userName"
               {...register("userName", {
-                required: true,
+                required: "Username is required.",
+                pattern: {
+                  value: /^[A-Za-z]+$/,
+                  message: "Invalid username. Only alphanumeric characters are allowed.",
+                },
+                minLength: {
+                  value: 3,
+                  message: "Username should be at least 3 characters.",
+                },
+                maxLength: {
+                  value: 15,
+                  message: "Username should be at most 15 characters.",
+                },
               })}
             />
+               {errors.userName && <p>{errors.userName.message}</p>}
           </div>
           <div className="input form-control">
             <img src={password_icon} alt="" srcset="" />
@@ -73,14 +86,19 @@ if(error)
               type="password"
               placeholder="password"
               name="password"
-              {...register("password", {
+              {...register("password", { 
                 required: "Password is required.",
                 minLength: {
                   value: 6,
-                  message: "Password should be at-least 6 characters.",
+                  message: "Password should be at least 6 characters.",
+                },
+                pattern: {
+                  value: /^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/,
+                  message: "Password must contain at least one capital letter and one special character.",
                 },
               })}
             />
+            {errors.password && <p>{errors.password.message}</p>}
           </div>
         </div>
 
