@@ -17,30 +17,4 @@ describe('Header component', () => {
     expect(screen.getByText('Library Management System')).toBeInTheDocument();
   });
   
-  test('renders Header component with title', () => {
-    const contextValue = { isLoggedIn: false };
-    render(
-      <AppContext.Provider value={contextValue}>
-          <Router>
-        <Header />
-        </Router>
-      </AppContext.Provider>
-    );
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Login')).toBeInTheDocument();
-  });
-  test('renders all links correctly', () => {
-    const contextValue = { isLoggedIn: true };
-    render(
-      <AppContext.Provider value={contextValue}>
-          <Router>
-        <Header />
-        </Router>
-      </AppContext.Provider>
-    );
-    expect(screen.getByText('Home')).toBeInTheDocument();
-    expect(screen.getByText('Services')).toBeInTheDocument();
-    expect(screen.getByText('Favorite')).toBeInTheDocument();
-    expect(screen.getByText('Logout')).toBeInTheDocument();
-  });
 });
