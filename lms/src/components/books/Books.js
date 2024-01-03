@@ -34,12 +34,18 @@ function Books() {
       },
       media: {
         width: '20%', 
+       },    
+       title:{
+        justifyContent:'center',
+        alignItems:'center',
+        textAlign:'center',
+        marginBottom: '5px', 
        },
       content: {
         width: '80%',
         textAlign: 'left',
         padding: '16px', 
-      },
+      }, 
       lineSpacing: {
         marginBottom: '5px', 
       },
@@ -98,15 +104,15 @@ function Books() {
         filteredBooks.map((book) => (
       <div key={book.title}>
       <Card style={styles.card}>
-        <CardMedia
+      <CardMedia
           component="img"
           alt="Book Cover"
           height="auto"
-          image="https://cdn.pixabay.com/photo/2018/01/17/18/43/book-3088775_1280.jpg" 
+          image="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=0&k=20&c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE=" 
           style={styles.media}
         />
         <CardContent style={styles.content}>
-          <Typography variant="h5" component="div" style={styles.lineSpacing}>
+          <Typography variant="h5" component="div"  style={styles.title}>
             {book.title}
           </Typography>
           <Typography variant="subtitle1" color="text.secondary" style={styles.lineSpacing}>
