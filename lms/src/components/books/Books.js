@@ -34,7 +34,7 @@ function Books() {
       },
       media: {
         width: '20%', 
-       },
+       },    
        title:{
         justifyContent:'center',
         alignItems:'center',
