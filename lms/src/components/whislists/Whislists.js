@@ -39,6 +39,12 @@ function Whislists() {
         lineSpacing: {
           marginBottom: '5px', 
         },
+        title:{
+          justifyContent:'center',
+          alignItems:'center',
+          textAlign:'center',
+          marginBottom: '5px', 
+         },
         redIcon: {
           color: 'red',
           fontSize: '2rem'
@@ -87,11 +93,11 @@ useEffect(()=>{
         filteredBooks.map((book) => (
       <div key={book.title}>
      <Card style={styles.card}>
-        <CardMedia
+     <CardMedia
           component="img"
           alt="Book Cover"
           height="auto"
-          image="https://cdn.pixabay.com/photo/2018/01/17/18/43/book-3088775_1280.jpg" 
+          image="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&w=0&k=20&c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE=" 
           style={styles.media}
         />
         <CardContent style={styles.content}>
