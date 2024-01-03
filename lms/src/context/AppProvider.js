@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import  AppContext  from "./AppContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AppProvider = ({children})=>{
     const Initialbooks=[];
@@ -21,11 +22,19 @@ const AppProvider = ({children})=>{
       localStorage.setItem('token', response.data);
       fetchData(); 
       setIsLoggedIn(true);
-      console.log("===>")
+      Swal.fire({ 
+        position: 'top-end', 
+        icon: 'success',
+        title: 'User logged in successfully',
+        showConfirmButton: false,timer: 1500 })
       return false;
     } catch (error) {
       if (error.response && error.response.status === 401) {
-        console.log("Wrong credentials!!");
+        Swal.fire({
+        position: 'top-end',  
+        icon: 'error',
+         title: 'Wrong Credential !!',
+         showConfirmButton: false,timer: 1500 })
         } else {
         console.log("An error occurred during login.");
         }
@@ -38,10 +47,20 @@ const AppProvider = ({children})=>{
   const signupUser = async (data) => {
     try {
       const response = await axios.post("http://localhost:8881/users/RegisterUser", data);
-      alert(response.data);
+      // alert(response.data);
+      Swal.fire({ 
+      position: 'top-end', 
+      icon: 'success',
+      title: 'User Registered successfully',
+      showConfirmButton: false,timer: 1500 })
     } catch (error) {
       if (error.response && error.response.status === 409) {
-        alert("Username already exists. Please choose a different username.");
+        // alert("Username already exists. Please choose a different username.");
+        Swal.fire({ 
+        position: 'top-end', 
+        icon: 'error',
+         title: 'Username already exists. Please choose a different username.',
+         showConfirmButton: false,timer: 1500 })
       } else {
         console.log("Error during signup:", error);
       }
@@ -118,6 +137,11 @@ const AppProvider = ({children})=>{
       const token=localStorage.getItem('token'); 
       const headers = { Authorization: `Bearer ${token}` };
       const response = await axios.post(`http://localhost:8881/fav/addBook/${userName}`, favbooks,{headers: headers});
+      Swal.fire({ 
+      position: 'top-end', 
+      icon: 'success',
+       title: 'Book added!!',
+       showConfirmButton: false,timer: 1500 })
       fetchData();
       fetchFavBookData();
     } catch (error) {
@@ -134,6 +158,11 @@ const AppProvider = ({children})=>{
           try {
             const response = await axios.delete(`http://localhost:8881/fav/deleteBooks/${userName}/${title}`,{headers: headers});
             console.log("Delete response:", response);
+            Swal.fire({ 
+            position: 'top-end', 
+            icon: 'success',
+             title: 'Book deleted!!',
+             showConfirmButton: false,timer: 1500 })
             fetchFavBookData();
           } catch (error) {
             console.log("Error deleting favorite book:", error.message);
