@@ -45,7 +45,7 @@ function Books() {
         width: '80%',
         textAlign: 'left',
         padding: '16px', 
-      },
+      }, 
       lineSpacing: {
         marginBottom: '5px', 
       },
