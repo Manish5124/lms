@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Header.css'; 
 import AppContext from '../../context/AppContext';
+import Swal from 'sweetalert2';
 
 const Header = () => {
   const { isLoggedIn, setIsLoggedIn } = useContext(AppContext);
@@ -13,6 +14,11 @@ const Header = () => {
   };
 
   const logout = () => {
+    Swal.fire({  
+    icon: 'success',
+     title: 'logout successfully',
+     showConfirmButton: false,timer: 1500 })
+
     localStorage.removeItem('userName');
     localStorage.removeItem('token');
     setIsLoggedIn(false);
