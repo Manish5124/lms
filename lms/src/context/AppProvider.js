@@ -16,7 +16,7 @@ const AppProvider = ({children})=>{
 
   const loginUser = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8881/auth/login", data);
+      const response = await axios.post("http://localhost:8000/auth/login", data);
       
       localStorage.setItem('userName', data.userName);
       localStorage.setItem('token', response.data);
@@ -46,7 +46,7 @@ const AppProvider = ({children})=>{
  
   const signupUser = async (data) => {
     try {
-      const response = await axios.post("http://localhost:8881/users/RegisterUser", data);
+      const response = await axios.post("http://localhost:8082/users/RegisterUser", data);
       // alert(response.data);
       Swal.fire({ 
       position: 'top-end', 
@@ -72,7 +72,7 @@ const AppProvider = ({children})=>{
     try {
       const token=localStorage.getItem('token'); 
       const headers = { Authorization: `Bearer ${token}` };
-      const response = await axios.get(`http://localhost:8881/fav/isFavoriteBook/${userName}/${title}`,{headers: headers});
+      const response = await axios.get(`http://localhost:8083/fav/isFavoriteBook/${userName}/${title}`,{headers: headers});
       return response.data;
     } catch (error) {
       console.log("Axios error:", error);
@@ -84,7 +84,7 @@ const AppProvider = ({children})=>{
     try {
       const token=localStorage.getItem('token'); 
       const headers = { Authorization: `Bearer ${token}` };
-      const response = await axios.get(`http://localhost:8881/books/all`,{headers: headers});
+      const response = await axios.get(`http://localhost:5050/books/all`,{headers: headers});
       console.log("home up response =>", response);
       const res = response.data.results;
       console.log("res =>", res);
@@ -106,7 +106,7 @@ const AppProvider = ({children})=>{
       const token=localStorage.getItem('token'); 
       const headers = { Authorization: `Bearer ${token}` };
       if (userName) {
-        const response = await axios.get(`http://localhost:8881/fav/getallbooks/${userName}`,{headers: headers});
+        const response = await axios.get(`http://localhost:8083/fav/getallbooks/${userName}`,{headers: headers});
         console.log("get all fav books =>", response);
         const res = response.data;
   
@@ -136,7 +136,7 @@ const AppProvider = ({children})=>{
       }
       const token=localStorage.getItem('token'); 
       const headers = { Authorization: `Bearer ${token}` };
-      const response = await axios.post(`http://localhost:8881/fav/addBook/${userName}`, favbooks,{headers: headers});
+      const response = await axios.post(`http://localhost:8083/fav/addBook/${userName}`, favbooks,{headers: headers});
       Swal.fire({ 
       position: 'top-end', 
       icon: 'success',
@@ -156,7 +156,7 @@ const AppProvider = ({children})=>{
           const token=localStorage.getItem('token'); 
           const headers = { Authorization: `Bearer ${token}` };
           try {
-            const response = await axios.delete(`http://localhost:8881/fav/deleteBooks/${userName}/${title}`,{headers: headers});
+            const response = await axios.delete(`http://localhost:8083/fav/deleteBooks/${userName}/${title}`,{headers: headers});
             console.log("Delete response:", response);
             Swal.fire({ 
             position: 'top-end', 
