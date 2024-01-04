@@ -20,17 +20,18 @@ function Books() {
       const [favorites, setFavorites] = useState([]);
       const [searchQuery, setSearchQuery] = useState('');
       const [matchesFound, setMatchesFound] = useState(true);
-  
+      const [hoveredCard, setHoveredCard] = useState(null);
+
     const styles = {
       mainContainer:{
-        background: 'linear-gradient(#2A00B7, #42006C)'
+       
       },
       card: {
         display: 'flex',
-        marginLeft: '12px',
-        marginRight: '12px',
+        marginLeft: '12%',
+        marginRight: '12%',
+        marginTop:'1%',
         maxWidth: '80%', 
-        marginBottom:'9px'
       },
       media: {
         width: '20%', 
@@ -42,7 +43,7 @@ function Books() {
         marginBottom: '5px', 
        },
       content: {
-        width: '80%',
+        width: '80%', 
         textAlign: 'left',
         padding: '16px', 
       }, 
@@ -103,7 +104,14 @@ function Books() {
       {matchesFound ? (
         filteredBooks.map((book) => (
       <div key={book.title}>
-      <Card style={styles.card}>
+      <Card  style={{
+    ...styles.card,
+    boxShadow: hoveredCard === book.title ? 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px' : 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
+  }}
+  onMouseEnter={() => setHoveredCard(book.title)}
+  onMouseLeave={() => setHoveredCard(null)}
+      
+      >
       <CardMedia
           component="img"
           alt="Book Cover"
